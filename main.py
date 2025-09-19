@@ -7,7 +7,7 @@ from flask import Flask, Response, request
 from flask_sqlalchemy import SQLAlchemy
 import json
 
-# Inicializa a aplicação Flask
+# Inicializa a aplicação Flask      
 app = Flask('carros')
 
 # Configurações do SQLAlchemy
@@ -58,7 +58,7 @@ def seleciona_carro():
     # Converte a lista de objetos Carro para uma lista de dicionários JSON
     carros_json = [carro.to_json() for carro in carros_selecionados]
     # CORREÇÃO: Retornando a lista de carros em JSON que foi consultada
-    return gera_resposta(200, carros_json)
+    return gera_resposta(200, carros_json)  
 
 # metodo 2 - Get (por ID)
 @app.route('/carros/<id_carro_pam>', methods=['GET'])
@@ -101,7 +101,7 @@ def deleta_carro(id_carro_pam):
     carro = Carros.query.filter_by(id_carro = id_carro_pam).first()
     
     try:
-        mydb.session.delete(carro)
+        mydb.session.delete(carro)      
         mydb.session.commit()
         return gera_resposta(200, carro.to_json(), "deleteado com sucesso")
     
